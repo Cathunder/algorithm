@@ -19,7 +19,13 @@ class Main {
 
         List<String> words = new ArrayList<>(set);
         words.stream()
-            .sorted(Comparator.comparingInt(String::length).thenComparing((String::compareTo)))
+            .sorted((a, b) -> {
+                if(a.length() == b.length()) {
+                    return a.compareTo(b);
+                } else {
+                    return a.length() - b.length();
+                }
+            })
             .forEach(System.out::println);
     }
 }
